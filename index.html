@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:title" content="selamat hari kasih sayang" />
-    <meta property="og:description" content="the valentine day" />
+    
+    <meta property="og:title" content="Selamat Hari Kasih Sayang ❤️" />
+    <meta property="og:description" content="Ada sesuatu untukmu di sini..." />
     <meta property="og:image" content="https://bimawest.github.io/valentine/our.jpg" />
+    <meta property="og:image:secure_url" content="https://bimawest.github.io/valentine/our.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta property="og:url" content="https://bimawest.github.io/valentine/" />
-    <meta property="og:image:alt" content="The velentine day" />
-    <title>selamat hari kasih sayang</title>
+    
+    <title>Selamat Hari Kasih Sayang</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
@@ -140,6 +145,11 @@
             border-radius: 10px;
             margin-bottom: 15px;
             border-left: 4px solid #d81b60;
+            transition: transform 0.2s;
+        }
+
+        .note:hover {
+            transform: scale(1.02);
         }
         
         .gallery {
@@ -151,7 +161,7 @@
         .gallery-item {
             border-radius: 10px;
             overflow: hidden;
-            height: 200px;
+            height: 250px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
@@ -208,13 +218,13 @@
             animation: fadeIn 0.5s;
         }
 
-        .gift-card img { width: 200px; height: 200px; margin: 15px 0; border: 1px solid #eee; }
+        .gift-card img { max-width: 100%; height: auto; margin: 15px 0; border: 1px solid #eee; border-radius: 10px; }
         .price { font-size: 1.8rem; color: #4b2c20; font-weight: bold; margin: 10px 0; }
         
         .heart {
             position: absolute;
             z-index: -1;
-            opacity: 0.2;
+            opacity: 0.3;
             pointer-events: none;
             color: #d81b60;
             font-size: 24px;
@@ -227,14 +237,14 @@
         }
         
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(20deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
 
         @media (max-width: 768px) {
-            .tabs { flex-direction: column; align-items: center; }
-            .tab { width: 100%; justify-content: center; }
+            .tabs { flex-direction: row; justify-content: space-around; }
+            .tab { font-size: 14px; padding: 10px 15px; }
             .gallery { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
@@ -245,35 +255,27 @@
         <h1 class="main-title">Happy Valentine Sayangku ❤️</h1>
 
         <div class="tabs">
-            <button class="tab active" data-tab="love-letter">
-                <span>❤️</span> Surat Cinta
-            </button>
-            <button class="tab" data-tab="notes">
-                <span>📝</span> Catatan
-            </button>
-            <button class="tab" data-tab="gallery">
-                <span>🌷</span> Galeri
-            </button>
-            <button class="tab" data-tab="hadiah">
-                <span>🍫</span> Hadiah
-            </button>
+            <button class="tab active" data-tab="love-letter"><span>❤️</span> Surat</button>
+            <button class="tab" data-tab="notes"><span>📝</span> Pesan</button>
+            <button class="tab" data-tab="gallery"><span>🌷</span> Foto</button>
+            <button class="tab" data-tab="hadiah"><span>🍫</span> Hadiah</button>
         </div>
         
         <div class="content-area">
             <div class="tab-content active" id="love-letter">
-                <h2>Tersayang,</h2>
+                <h2>Untukmu...</h2>
                 <div class="letter" id="loveLetter">
                     <div class="letter-header">
-                        <h3>Sebuah Surat Untukmu</h3>
-                        <span>👇 Klik untuk membuka</span>
+                        <h3>Buka Surat Ini</h3>
+                        <span>👇 Klik</span>
                     </div>
                     <div class="letter-content">
                         <p>Sayangku,</p><br>
-                        <p>Setiap hari bersamamu terasa seperti mimpi indah yang tak ingin kuakhiri. Senyummu mencerahkan hari-hari gelapku, dan tawamu adalah melodi favoritku.</p><br>
-                        <p>Aku menghargai setiap momen yang kita lalui bersama. Kamu telah menunjukkan padaku apa arti kebahagiaan yang sebenarnya, dan aku selamanya bersyukur memilikimu dalam hidupku.</p><br>
+                        <p>Selamat hari Valentine! Foto momen bahagia kita selalu mengingatkanku betapa beruntungnya aku memilikimu.</p><br>
+                        <p>Terima kasih sudah menjadi bagian terindah dalam hidupku. Senyummu di foto itu adalah harta yang paling berharga buatku.</p><br>
                         <p>Ingatlah selalu bahwa hatiku adalah milikmu.</p><br>
                         <p>Selamanya milikmu,</p>
-                        <p>kesayanganmu</p>
+                        <p>Bima</p>
                     </div>
                 </div>
             </div>
@@ -287,44 +289,33 @@
             </div>
 
             <div class="tab-content" id="gallery">
-                <h2>Bunga Untukmu</h2>
+                <h2>Momen Kita</h2>
                 <div class="gallery">
-                    <div class="gallery-item"><img src="img/gladiolus1.jpg" alt="Gladiolus 1"></div>
-                    <div class="gallery-item"><img src="img/gladiolus2.jpg" alt="Gladiolus 2"></div>
-                    <div class="gallery-item"><img src="img/poppy1.jpg" alt="Poppy 1"></div>
-                    <div class="gallery-item"><img src="img/poppy2.jpg" alt="Poppy 2"></div>
+                    <div class="gallery-item"><img src="our.jpg" alt="Momen Bahagia"></div>
+                    <div class="gallery-item"><img src="img/gladiolus1.jpg" alt="Bunga 1"></div>
+                    <div class="gallery-item"><img src="img/poppy1.jpg" alt="Bunga 2"></div>
                 </div>
             </div>
 
             <div class="tab-content" id="hadiah">
-                <h2 style="text-align: center;">Pilih Coklatmu, Sayang! 🍫</h2>
+                <h2 style="text-align: center;">Pilih Coklatmu! 🍫</h2>
                 <div class="container-tombol">
-                    <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah7k')">
-                        COKLAT KECIL
-                    </button>
-
-                    <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah100k')" style="background: #361d15;">
-                        COKLAT BESAR
-                    </button>
+                    <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah7k')">COKLAT KECIL</button>
+                    <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah100k')" style="background: #361d15;">COKLAT BESAR</button>
                 </div>
 
                 <div id="hadiah7k" class="gift-card">
                     <p>Yeeay! Ini camilan buat sayang ❤️</p>
-                    <p><small>Kode: 041884</small></p>
-                    <img src="img/barcode_valentine.png" alt="Barcode 7rb">
+                    <img src="img/barcode_valentine.png" alt="Barcode Coklat">
                     <p class="price">Rp 7.000</p>
-                    <p>QR code hanya berlaku sekali yah!</p>
                 </div>
                 
                 <div id="hadiah100k" class="gift-card">
                     <p>Wah! Sayang dapet COKLAT BESAR! 😍✨</p>
-                    <p><small>Kode: 419906</small></p>
-                    <img src="img/barcode_valentine100.png" alt="Barcode 100rb">
+                    <img src="img/barcode_valentine100.png" alt="Barcode Spesial">
                     <p class="price">Rp 100.000</p>
-                    <p>QR code hanya berlaku sekali yah!</p>
                 </div>
             </div>
-            
         </div>
     </div>
     
@@ -352,13 +343,15 @@
                 this.classList.toggle('expanded');
             });
             
-            for (let i = 0; i < 15; i++) {
+            // Generate hati terbang
+            for (let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
                 heart.classList.add('heart');
                 heart.innerHTML = '❤️';
                 heart.style.left = Math.random() * 100 + '%';
                 heart.style.top = Math.random() * 100 + '%';
                 heart.style.animationDelay = Math.random() * 5 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
                 document.body.appendChild(heart);
             }
         });
@@ -371,5 +364,4 @@
         }
     </script>
 </body>
-                    </html>
-                        
+</html>
