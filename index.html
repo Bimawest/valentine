@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hadiah Valentine Spesial</title>
+    <style>
+        body {
+            background-color: #f8e1e7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container-tombol {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .chocolate-btn {
+            width: 160px;
+            height: 100px;
+            background: #4b2c20; 
+            border-radius: 12px;
+            border: none;
+            box-shadow: 8px 8px 0 #3d241a;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1rem;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .chocolate-btn::after {
+            content: "";
+            position: absolute;
+            top: 10%; left: 10%; right: 10%; bottom: 10%;
+            border: 2px solid #5d3a2d;
+            border-radius: 5px;
+        }
+
+        .chocolate-btn:hover { transform: scale(1.05); }
+        .chocolate-btn:active {
+            transform: scale(0.95);
+            box-shadow: 2px 2px 0 #3d241a;
+        }
+
+        /* Styling Kartu Hadiah */
+        .gift-card {
+            display: none; /* Sembunyi di awal */
+            margin-top: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border: 2px dashed #d63384;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        img { width: 180px; height: 180px; border: 1px solid #eee; }
+        h1 { color: #d63384; text-align: center; margin-bottom: 30px; }
+        .price { font-size: 1.5rem; color: #4b2c20; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <h1>Pilih Coklatmu, Sayang! 🍫❤️</h1>
+    
+    <div class="container-tombol">
+        <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah7k')">
+            COKLAT KECIL
+        </button>
+
+        <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah100k')" style="background: #361d15;">
+            COKLAT BESAR
+        </button>
+    </div>
+
+    <div id="hadiah7k" class="gift-card">
+        <p>Yeeay! Ini camilan buat sayang ❤️</p>
+        <p><small>Code: 041884</small></p>
+        <img src="img/barcode_valentine.png" alt="QR 7rb">
+        <p class="price">Rp 7.000</p>
+        <p>qr code hanya berlaku seklai yah</p>
+    </div>
+    
+    <div id="hadiah100k" class="gift-card">
+        <p>Wah! sayang dapet COKLAT BESAR! 😍✨</p>
+        <p><small>Code: 419906</small></p>
+        <img src="img/barcode_valentine100.png" alt="QR 100rb">
+        <p class="price">Rp 100.000</p>
+        <p>qr code hanya berlaku seklai yah</p>
+    </div>
+
+    <script>
+        function tampilkanHadiah(idHadiah) {
+            // Sembunyikan semua hadiah dulu agar tidak tumpang tindih
+            document.querySelectorAll('.gift-card').forEach(card => {
+                card.style.display = 'none';
+            });
+            
+            // Tampilkan hadiah yang dipilih
+            document.getElementById(idHadiah).style.display = 'block';
+            
+            // Scroll otomatis ke arah barcode agar langsung kelihatan
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
