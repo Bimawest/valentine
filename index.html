@@ -13,6 +13,11 @@
     <meta property="og:url" content="https://bimawest.github.io/valentine/" />
     <title>Untuk Cintaku - Valentine Edition</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -33,7 +38,6 @@
         
         .container {
             width: 100%;
-            max-width: 900px;
             padding: 20px;
             margin-top: 30px;
             animation: fadeIn 1s ease forwards;
@@ -240,6 +244,46 @@
             .tab { width: 100%; justify-content: center; }
             .gallery { grid-template-columns: repeat(2, 1fr); }
         }
+        
+        /* audio */
+.audio-icon-wrapper {
+    width: 2rem;
+    height: 2rem;
+    font-size: 2rem;
+    position: fixed;
+    bottom: 50%;
+    right: 5px;
+    cursor: pointer;
+    color: white;
+    opacity: 0.5;
+    mix-blend-mode: difference;
+    animation: rotating 4s linear infinite;
+    animation-play-state: paused;
+    transform-origin: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+    z-index: 999;
+  }
+
+/* Transisi saat surat dibuka */
+.letter {
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.letter:active {
+    transform: scale(0.98);
+}
+
+  
+  @keyframes rotating {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
     </style>
 </head>
 <body>
@@ -331,6 +375,16 @@
         </div>
     </div>
     
+    <div id="audio-container">
+    <audio id="song" preload="auto">
+        <source src="save-and-sound.mp3" type="audio/mp3">
+        Your browser does not support HTML5 audio.
+    </audio>
+    <div class="audio-icon-wrapper" style="display: flex;">
+        <i class="bi bi-disc"></i>
+    </div>
+</div>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('.tab');
@@ -373,6 +427,85 @@
             document.getElementById(idHadiah).style.display = 'block';
         }
     </script>
-</body>
-                            </html>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+    const song = document.getElementById('song');
+    const audioIconWrapper = document.querySelector('.audio-icon-wrapper');
+    const loveLetter = document.getElementById('loveLetter');
+    let isPlaying = false;
+
+    // Fungsi untuk Play/Pause Musik
+    function toggleMusic() {
+        if (isPlaying) {
+            song.pause();
+            audioIconWrapper.style.animationPlayState = 'paused';
+        } else {
+            song.play().catch(error => console.log("Autoplay dicegah oleh browser"));
+            audioIconWrapper.style.animationPlayState = 'running';
+        }
+        isPlaying = !isPlaying;
+    }
+
+    // 1. Trigger musik saat SURAT DIKLIK
+    loveLetter.addEventListener('click', function() {
+        this.classList.toggle('expanded');
+        
+        // Cek jika musik belum berputar, maka putar
+        if (!isPlaying) {
+            toggleMusic();
+        }
+    });
+
+    // 2. Kontrol manual via IKON DISC
+    audioIconWrapper.addEventListener('click', function() {
+        toggleMusic();
+    });
+
+    // Sinkronisasi jika lagu selesai
+    song.onended = function() {
+        audioIconWrapper.style.animationPlayState = 'paused';
+        isPlaying = false;
+    };
+
+    // --- Script Tab (Tetap ada) ---
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
     
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            tabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+                if (content.id === targetTab) {
+                    content.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // --- Efek Hati (Tetap ada) ---
+    for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.top = Math.random() * 100 + '%';
+        heart.style.animationDelay = Math.random() * 5 + 's';
+        document.body.appendChild(heart);
+    }
+});
+
+// Fungsi hadiah (Tetap ada)
+function tampilkanHadiah(idHadiah) {
+    document.querySelectorAll('.gift-card').forEach(card => {
+        card.style.display = 'none';
+    });
+    document.getElementById(idHadiah).style.display = 'block';
+}
+
+    </script>
+</body>
+            </html>
+                        
