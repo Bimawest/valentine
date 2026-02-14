@@ -3,25 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadiah Valentine Spesial</title>
+    <meta property="og:title" content="selamat hari kasih sayang" />
+    <meta property="og:description" content="the valentine day" />
+    <meta property="og:image" content="https://bimawest.github.io/valentine/our.jpg" />
+    <meta property="og:url" content="https://bimawest.github.io/valentine/" />
+    <meta property="og:image:alt" content="The velentine day" />
+    <title>selamat hari kasih sayang</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            background-color: #f8e1e7;
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #ffd1dc, #ffb7c5);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 20px;
+            overflow-x: hidden;
+            color: #8a1c4a;
         }
+        
+        .container {
+            width: 100%;
+            max-width: 900px;
+            padding: 20px;
+            margin-top: 30px;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        h1.main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 42px;
+            color: #d81b60;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            background: rgba(255, 255, 255, 0.7);
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            color: #d81b60;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .tab:hover {
+            background: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+        }
+        
+        .tab.active {
+            background: white;
+            color: #d81b60;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .content-area {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            min-height: 400px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .letter {
+            padding: 20px;
+            background: #fff5f7;
+            border-radius: 15px;
+            border: 2px dashed #ffb7c5;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .letter h3 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 28px;
+            color: #d81b60;
+        }
+        
+        .letter-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            line-height: 1.6;
+        }
+        
+        .letter.expanded .letter-content {
+            max-height: 1000px;
+            padding-top: 10px;
+        }
+        
+        .note {
+            background: #fce4ec;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border-left: 4px solid #d81b60;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover { transform: scale(1.05); }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
         .container-tombol {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-top: 20px;
         }
 
         .chocolate-btn {
@@ -35,9 +178,8 @@
             transition: transform 0.2s, box-shadow 0.2s;
             color: #fff;
             font-weight: bold;
-            font-size: 1rem;
+            font-family: 'Montserrat', sans-serif;
             position: relative;
-            margin-bottom: 20px;
         }
 
         .chocolate-btn::after {
@@ -54,73 +196,180 @@
             box-shadow: 2px 2px 0 #3d241a;
         }
 
-        /* Styling Kartu Hadiah */
         .gift-card {
-            display: none; /* Sembunyi di awal */
-            margin-top: 20px;
+            display: none;
+            margin-top: 30px;
             padding: 20px;
-            background: white;
+            background: #fff;
             border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
             text-align: center;
             border: 2px dashed #d63384;
             animation: fadeIn 0.5s;
         }
 
+        .gift-card img { width: 200px; height: 200px; margin: 15px 0; border: 1px solid #eee; }
+        .price { font-size: 1.8rem; color: #4b2c20; font-weight: bold; margin: 10px 0; }
+        
+        .heart {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.2;
+            pointer-events: none;
+            color: #d81b60;
+            font-size: 24px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
 
-        img { width: 180px; height: 180px; border: 1px solid #eee; }
-        h1 { color: #d63384; text-align: center; margin-bottom: 30px; }
-        .price { font-size: 1.5rem; color: #4b2c20; font-weight: bold; }
+        @media (max-width: 768px) {
+            .tabs { flex-direction: column; align-items: center; }
+            .tab { width: 100%; justify-content: center; }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
 
-    <h1>Happy Valentine SAYANGKU</h1>
-    <h1>Pilih Coklatmu, Sayang! 🍫❤️</h1>
+    <div class="container" id="mainContent">
+        <h1 class="main-title">Happy Valentine Sayangku ❤️</h1>
+
+        <div class="tabs">
+            <button class="tab active" data-tab="love-letter">
+                <span>❤️</span> Surat Cinta
+            </button>
+            <button class="tab" data-tab="notes">
+                <span>📝</span> Catatan
+            </button>
+            <button class="tab" data-tab="gallery">
+                <span>🌷</span> Galeri
+            </button>
+            <button class="tab" data-tab="hadiah">
+                <span>🍫</span> Hadiah
+            </button>
+        </div>
+        
+        <div class="content-area">
+            <div class="tab-content active" id="love-letter">
+                <h2>Tersayang,</h2>
+                <div class="letter" id="loveLetter">
+                    <div class="letter-header">
+                        <h3>Sebuah Surat Untukmu</h3>
+                        <span>👇 Klik untuk membuka</span>
+                    </div>
+                    <div class="letter-content">
+                        <p>Sayangku,</p><br>
+                        <p>Setiap hari bersamamu terasa seperti mimpi indah yang tak ingin kuakhiri. Senyummu mencerahkan hari-hari gelapku, dan tawamu adalah melodi favoritku.</p><br>
+                        <p>Aku menghargai setiap momen yang kita lalui bersama. Kamu telah menunjukkan padaku apa arti kebahagiaan yang sebenarnya, dan aku selamanya bersyukur memilikimu dalam hidupku.</p><br>
+                        <p>Ingatlah selalu bahwa hatiku adalah milikmu.</p><br>
+                        <p>Selamanya milikmu,</p>
+                        <p>kesayanganmu</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="notes">
+                <h2>Pengingat Untukmu</h2>
+                <div class="note"><p>Sehat selalu yah sayang 🫶</p></div>
+                <div class="note"><p>Jaga diri baik-baik ya selalu ✨</p></div>
+                <div class="note"><p>Jangan lupa makan tepat waktu 🍱</p></div>
+                <div class="note"><p>Kamu milikku.. selamanya ❤️</p></div>
+            </div>
+
+            <div class="tab-content" id="gallery">
+                <h2>Bunga Untukmu</h2>
+                <div class="gallery">
+                    <div class="gallery-item"><img src="img/gladiolus1.jpg" alt="Gladiolus 1"></div>
+                    <div class="gallery-item"><img src="img/gladiolus2.jpg" alt="Gladiolus 2"></div>
+                    <div class="gallery-item"><img src="img/poppy1.jpg" alt="Poppy 1"></div>
+                    <div class="gallery-item"><img src="img/poppy2.jpg" alt="Poppy 2"></div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="hadiah">
+                <h2 style="text-align: center;">Pilih Coklatmu, Sayang! 🍫</h2>
+                <div class="container-tombol">
+                    <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah7k')">
+                        COKLAT KECIL
+                    </button>
+
+                    <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah100k')" style="background: #361d15;">
+                        COKLAT BESAR
+                    </button>
+                </div>
+
+                <div id="hadiah7k" class="gift-card">
+                    <p>Yeeay! Ini camilan buat sayang ❤️</p>
+                    <p><small>Kode: 041884</small></p>
+                    <img src="img/barcode_valentine.png" alt="Barcode 7rb">
+                    <p class="price">Rp 7.000</p>
+                    <p>QR code hanya berlaku sekali yah!</p>
+                </div>
+                
+                <div id="hadiah100k" class="gift-card">
+                    <p>Wah! Sayang dapet COKLAT BESAR! 😍✨</p>
+                    <p><small>Kode: 419906</small></p>
+                    <img src="img/barcode_valentine100.png" alt="Barcode 100rb">
+                    <p class="price">Rp 100.000</p>
+                    <p>QR code hanya berlaku sekali yah!</p>
+                </div>
+            </div>
+            
+        </div>
+    </div>
     
-    <div class="container-tombol">
-        <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah7k')">
-            COKLAT KECIL
-        </button>
-
-        <button class="chocolate-btn" onclick="tampilkanHadiah('hadiah100k')" style="background: #361d15;">
-            COKLAT BESAR
-        </button>
-    </div>
-
-    <div id="hadiah7k" class="gift-card">
-        <p>Yeeay! Ini camilan buat sayang ❤️</p>
-        <p><small>Code: 041884</small></p>
-        <img src="img/barcode_valentine.png" alt="QR 7rb">
-        <p class="price">Rp 7.000</p>
-        <p>qr code hanya berlaku seklai yah</p>
-    </div>
-    
-    <div id="hadiah100k" class="gift-card">
-        <p>Wah! sayang dapet COKLAT BESAR! 😍✨</p>
-        <p><small>Code: 419906</small></p>
-        <img src="img/barcode_valentine100.png" alt="QR 100rb">
-        <p class="price">Rp 100.000</p>
-        <p>qr code hanya berlaku seklai yah</p>
-    </div>
-
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.tab');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                        if (content.id === targetTab) {
+                            content.classList.add('active');
+                        }
+                    });
+                });
+            });
+            
+            const loveLetter = document.getElementById('loveLetter');
+            loveLetter.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+            
+            for (let i = 0; i < 15; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.top = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 5 + 's';
+                document.body.appendChild(heart);
+            }
+        });
+
         function tampilkanHadiah(idHadiah) {
-            // Sembunyikan semua hadiah dulu agar tidak tumpang tindih
             document.querySelectorAll('.gift-card').forEach(card => {
                 card.style.display = 'none';
             });
-            
-            // Tampilkan hadiah yang dipilih
             document.getElementById(idHadiah).style.display = 'block';
-            
-            // Scroll otomatis ke arah barcode agar langsung kelihatan
-            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
         }
     </script>
 </body>
-</html>
+                    </html>
+                        
